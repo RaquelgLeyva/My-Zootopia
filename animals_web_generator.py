@@ -18,18 +18,22 @@ output = ""
 
 for fox in animals_data:
     output += '<li class="cards__item">\n'
-    output += f"Name: {fox['name']}<br/>\n"
-    output += f"Diet: {fox['characteristics']['diet']}<br/>\n"
+    output += f'  <div class="card__title">{fox["name"]}</div>\n'
+    output += '  <p class="card__text">\n'
+    output += f'    <strong>Diet:</strong> {fox["characteristics"]["diet"]}<br/>\n'
 
     if fox["locations"]:
-        output += f"Location: {fox['locations'][0]}<br/>\n"
+        output += f'    <strong>Location:</strong> {fox["locations"][0]}<br/>\n'
     else:
-        output += "Location: Unknown<br/>\n"
+        output += '    <strong>Location:</strong> Unknown<br/>\n'
 
     if "type" in fox["characteristics"]:
-        output += f"Type: {fox['characteristics']['type']}<br/>\n"
+        output += f'    <strong>Type:</strong> {fox["characteristics"]["type"]}<br/>\n'
 
+    output += '  </p>\n'
     output += '</li>\n'
+
+
 
 # Step 5: Replace placeholder in template
 html_output = html_template.replace("__REPLACE_ANIMALS_INFO__", output)
@@ -39,3 +43,5 @@ with open("animals.html", "w", encoding="utf-8") as output_file:
     output_file.write(html_output)
 
 print("✅ HTML file has been created successfully!")
+print(html_output)  # Para ver cómo está quedando el HTML generado
+
