@@ -14,8 +14,12 @@ def serialize_animal(animal_obj):
     output += f'    <strong>Diet:</strong> {animal_obj["characteristics"]["diet"].capitalize()}<br/>\n'
     output += f'    <strong>Location:</strong> {animal_obj["locations"][0].capitalize()}<br/>\n'
 
+
     if "type" in animal_obj["characteristics"]:
         output += f'    <strong>Type:</strong> {animal_obj["characteristics"]["type"].capitalize()}<br/>\n'
+
+    if "slogan" in animal_obj["characteristics"]:
+        output += f'    <strong>Slogan:</strong> {animal_obj["characteristics"]["slogan"].capitalize()}<br/>\n'
 
     output += '  </p>\n'
     output += '</li>\n'
