@@ -10,9 +10,8 @@ The data is fetched in real-time from the [API Ninjas Animals API](https://api-n
 To install this project:
 
 1. Clone the repository:
-   ```bash
-   git clone https://github.com/your-username/animal-info-webpage.git
-   cd animal-info-webpage
+  
+   To install this project, simply clone the repository and install the dependencies in requirements.txt using `pip`
 
 ## ▶️ Usage
 To use this project, run the following command:
