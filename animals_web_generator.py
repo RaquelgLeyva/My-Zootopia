@@ -5,6 +5,8 @@ import data_fetcher  # Importa el módulo de data_fetcher
 # Cargar las variables de entorno (si las tienes en un .env)
 load_dotenv()
 
+API_KEY = os.getenv('API_KEY')
+
 def serialize_animal(animal_obj):
     """Convert a single animal object to HTML string"""
     output = ""
