@@ -4,31 +4,29 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-# Reemplaza con tu propia clave API
+
 API_KEY = os.getenv('API_KEY')
 
 
 def fetch_data(animal_name):
-    """Fetch animal data from the API based on animal name"""
+    """Fetch animal data from the API based on the animal name"""
     url = "https://api.api-ninjas.com/v1/animals"
     headers = {
-        'X-Api-Key': API_KEY  # Encabezado con tu clave API
+        'X-Api-Key': API_KEY  # Header with your API key
     }
 
     try:
-        # Realizar la solicitud GET a la API
+        # Make the GET request to the API
         response = requests.get(f"{url}?name={animal_name}", headers=headers)
 
-        # Comprobar si la respuesta fue exitosa
+        # Check if the response was successful
         if response.status_code == 200:
-            # Si la respuesta es válida, devolver el JSON
+            # If the response is valid, return the JSON data
             return response.json()
         else:
             print(f"Error: {response.status_code} - {response.text}")
             return None
     except requests.exceptions.RequestException as e:
-        # Captura cualquier error durante la solicitud
+        # Catch any error during the request
         print(f"Request failed: {e}")
         return None
-
-

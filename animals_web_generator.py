@@ -1,14 +1,14 @@
 import os
 from dotenv import load_dotenv
-import data_fetcher  # Importa el módulo de data_fetcher
+import data_fetcher  # Import the data_fetcher module
 
-# Cargar las variables de entorno (si las tienes en un .env)
+# Load environment variables (if you have them in a .env file)
 load_dotenv()
 
 API_KEY = os.getenv('API_KEY')
 
 def serialize_animal(animal_obj):
-    """Convert a single animal object to HTML string"""
+    """Convert a single animal object to an HTML string"""
     output = ""
     output += '<li class="cards__item">\n'
     output += f'  <div class="card__title">{animal_obj["name"]}</div>\n'
@@ -27,34 +27,34 @@ def serialize_animal(animal_obj):
     return output
 
 def main():
-    # Cargar la plantilla HTML
+    # Load the HTML template
     with open("animals_template.html", "r", encoding="utf-8") as template_file:
         html_template = template_file.read()
 
-    # Pedir al usuario el nombre del animal
+    # Ask the user for the animal name
     animal_name = input("Please enter an animal: ")
 
-    # Obtener los datos del animal usando data_fetcher
+    # Fetch the animal data using data_fetcher
     data = data_fetcher.fetch_data(animal_name)
 
     if not data:
-        # Si no se encuentran animales, mostrar un mensaje
+        # If no animals are found, display a message
         output = f"<h2>The animal \"{animal_name}\" doesn't exist.</h2>"
     else:
-        # Generar el HTML para cada animal
+        # Generate HTML for each animal
         output = ""
         for animal in data:
             output += serialize_animal(animal)
 
-    # Reemplazar el marcador de posición con el HTML de los animales
+    # Replace the placeholder with the generated animal HTML
     html_output = html_template.replace("__REPLACE_ANIMALS_INFO__", output)
 
-    # Guardar el resultado en un archivo
+    # Save the result to a file
     with open("animals.html", "w", encoding="utf-8") as output_file:
         output_file.write(html_output)
 
     print("✅ HTML file has been created successfully!")
 
-# Ejecutar main solo si el script es ejecutado directamente
+# Run main only if the script is executed directly
 if __name__ == "__main__":
     main()
